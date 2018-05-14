@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 module.exports = (() => {
-    const AuthourSchema = new mongoose.Schema({
+    const AuthorSchema = new mongoose.Schema({
         name: {
             type: String,
             required: true,
@@ -10,7 +10,7 @@ module.exports = (() => {
         }
     }, { timestamps: true });    
     
-    mongoose.model('Autour', AuthourSchema);
+    mongoose.model('Author', AuthorSchema);
 })();
 
 

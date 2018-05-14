@@ -1,9 +1,9 @@
-// let mongoose = require('mongoose');
-// let Authors = require('../models/task.js');
+let mongoose = require('mongoose');
+let Authors = require('../models/author.js');
 // let bp = require('body-parser');
 
 module.exports = () => {
-    var Authors = require('../models/author');
+    var Authors = mongoose.model('Author'); // 
     return {
         readAll: (req, res) => {
             Authors.find({}, function (err, authors) {
