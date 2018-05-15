@@ -25,7 +25,7 @@ module.exports = (app) => {
         c.update(req, res);
     });
 
-    app.delete('/authors/:id', function (err, res) {
+    app.delete('/authors/:id', function (req, res) {
         c.delete(req, res);
     })
 

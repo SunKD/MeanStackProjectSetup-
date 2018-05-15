@@ -29,7 +29,7 @@ module.exports = () => {
         },
 
         readOne: (req, res) => {
-            Authors.fundOne({ _id: req.params.id }, function (err, data) {
+            Authors.findOne({ _id: req.params.id }, function (err, data) {
                 if (err) {
                     res.json(err);
                 }
@@ -38,10 +38,10 @@ module.exports = () => {
         },
 
         update: (req, res) => {
-            let updateInfo = {
+            let editAuthor = {
                 'name': req.body.name,
             }
-            Authors.updateOne({ _id: req.params.id }, undatedInfo, function (err, datas) {
+            Authors.updateOne({ _id: req.params.id }, editAuthor, function (err, datas) {
                 if (err) {
                     res.json(err);
                 } res.json(datas);

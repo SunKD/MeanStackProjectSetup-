@@ -1,0 +1,8 @@
+<h1>Add new Author: </h1>
+
+<form (submit) = "onSubmit()">
+  <label>Name:</label>
+  <input type="text" name="newauthor.name" [(ngModel)]="newauthor.name">
+  <button [routerLink]="['/']" class="btn btn-info" >Cancel</button>
+  <input type="submit" class="btn btn-info" value="submit">
+</form>

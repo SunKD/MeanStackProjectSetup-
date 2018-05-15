@@ -1,14 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from './http.service';
+import { HttpService } from '../http.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.css']
 })
-
-export class AppComponent implements OnInit {
+export class ListComponent implements OnInit {
   authors;
   newAuthor: any;
   editAuthor;
@@ -42,4 +41,5 @@ export class AppComponent implements OnInit {
     });
     this.getAllAuthors()
   }
+
 }

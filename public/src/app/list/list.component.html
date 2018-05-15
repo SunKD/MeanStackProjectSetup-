@@ -1,0 +1,20 @@
+<a [routerLink]="['new']">Add an author</a>
+<div *ngFor="let author of authors">
+  <table class="text-center">
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Actions available</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{author.name}}</td>
+        <td>
+          <button [routerLink]="['edit/',author._id]">Edit</button>
+          <button (click)="delete(author._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,15 @@
+<div class="row">
+  <a [routerLink]="['/']">Home</a>
+  {{message}}
+</div>
+<div *ngIf="editAuthor">
+    <form (submit) = "onSubmit(editAuthor._id)">
+        <label>Name:</label>
+        <input type="text" name="name" [(ngModel)]="editAuthor.name">
+        <button [routerLink]="['/']" class="btn btn-info" >Cancel</button>
+        <input type="submit" class="btn btn-info" value="submit">
+      </form>
+</div>
+
+  
+
