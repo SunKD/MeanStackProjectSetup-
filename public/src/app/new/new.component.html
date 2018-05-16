@@ -30,7 +30,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12">{{ name.errors | json }} {{ name.valid | json }}</div>
+          <div *ngIf="name.invalid && (name.dirty || !name.untouched)" class="col-md-12 alert alert-danger">
+            <div *ngIf="name.errors.required">Name is required!</div>
+            <div *ngIf="name.errors.minlength">Name must be at least 3 charaters long</div>
+          </div>
         </div>
         <div class="row buttons">
           <div class="col-md-6">

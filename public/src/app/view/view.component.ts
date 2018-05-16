@@ -27,36 +27,28 @@ export class ViewComponent implements OnInit {
   }
 
   voteUp(quoteId) {
-    console.log(quoteId)
-    console.log("hi!")
     let voted = this._httpService.voteQuote(this.thisAuthor._id,
       { "id": quoteId, "voteVal": 1 }).subscribe(data => {
-        console.log("got intot this function");
         this.thisAuthor = data;
       });
 
   }
 
   voteDown(quoteId) {
-    console.log(quoteId)
-    console.log("hi!")
     let voted = this._httpService.voteQuote(this.thisAuthor._id,
       { "id": quoteId, "voteVal": -1 }).subscribe(data => {
         console.log("got intot this function");
         this.thisAuthor = data;
       });
-
   }
-  
-  delete(quoteId:String) {
-    console.log(quoteId + "from view")
+
+  delete(quoteId: String) {
     let deletequote = this._httpService.deleteQuote(this.thisAuthor._id,
-      quoteId )
+      quoteId)
       .subscribe(data => {
-        console.log("got intot this function");
         this.thisAuthor = data;
       });
-    
+
   }
 
 }
