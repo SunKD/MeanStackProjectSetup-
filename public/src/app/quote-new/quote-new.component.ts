@@ -12,6 +12,8 @@ export class QuoteNewComponent implements OnInit {
   newQuote: any;
   thisAuthor;
   quoteaddAuthor;
+  message = "";
+  errors = { quote: "" };
   constructor(
     private _httpService: HttpService,
     private _route: ActivatedRoute,
@@ -28,11 +30,20 @@ export class QuoteNewComponent implements OnInit {
     console.log(this.id);
     let nQuote = this._httpService.addNewQuote(this.id, this.newQuote).subscribe(data=>{
       console.log("you are adding new quote" + data);
-      this.newQuote = data;
-      console.log(this.newQuote)
+      this.newQuote = data['data'];
+      this.message = data["message"];
+      if(data['message'] === "Success"){
+        this.message = this.newQuote.quote + "added successfully!";
+        this._router.navigate(['/view']);
+      }else{
+        if (data['error'].errors['quote']) {
+          this.errors.quote = data['error'].errors['quote'];
+        }
+      }
     })
     this.newQuote = {quote: ""};
-    this._router.navigate(['/']);
   }
 
+
+  
 }

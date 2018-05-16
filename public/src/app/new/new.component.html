@@ -1,25 +1,48 @@
-<h3>Add new Author: </h3>
 <!-- <div class="alert alert-danger" *ngIf="errors.length > 0">{{ errors }}</div> -->
-<a [routerLink]="['/']">Home</a>
-
+<div class="row text-right">
+  <div class="col-md-12">
+    <a [routerLink]="['/']" class="btn btn-outline-success">Home</a>
+  </div>
+</div>
+<div class="row text-center">
+  <div class="col-md-12">
+    <h3>Add new Author: </h3>
+  </div>
+</div>
 <div class="row">
+  <span [hidden]="!errors.name" class="text-danger">*{{errors.name.message}}</span>
+</div>
+<div class="row form">
+  <div class="col-md-4"></div>
   <div class="col-md-4">
     <div class="box text-center">
       <form (submit)="onSubmit()">
         <div class="row">
-          <label>Name:</label>
+          <div class="col-md-12 text-left">
+            <label>Name:</label>
+          </div>
         </div>
         <div class="row">
-          <input type="text" name="newauthor.name" [(ngModel)]="newauthor.name">
+          <div class="col-md-12">
+            <input type="text" required minlength="3" name="newauthor.name" [(ngModel)]="newauthor.name" #name="ngModel" [(ngModel)]="newauthor.name"
+              class="form-control">
+            <span [hidden]="!errors.name || name.valid" class="text-danger">*{{errors.name.message}}</span>
+          </div>
         </div>
         <div class="row">
-          <button [routerLink]="['/']" class="btn btn-info">Cancel</button>
-          <input type="submit" class="btn btn-info" value="submit">
+          <div class="col-md-12">{{ name.errors | json }} {{ name.valid | json }}</div>
         </div>
+        <div class="row buttons">
+          <div class="col-md-6">
+            <button [routerLink]="['/']" class="btn btn-danger form-control">Cancel</button>
+          </div>
+          <div class="col-md-6">
 
+            <input type="submit" class="btn btn-success form-control" [disabled]="!name.valid" value="submit">
+          </div>
+        </div>
       </form>
     </div>
-
   </div>
-
+  <div class="col-md-4"></div>
 </div>

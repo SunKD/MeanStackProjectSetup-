@@ -1,22 +1,28 @@
-<a [routerLink]="['new']">Add a quotable author</a>
-<h3>We have quoted by: </h3>
-<div *ngFor="let author of authors">
-  <table class="text-center">
-    <thead>
-      <tr>
-        <th>Author</th>
-        <th>Actions available</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{author.name}}</td>
-        <td>
-          <button [routerLink]="['/view/', author._id]">View Quotes</button>
-          <!-- <button (click)="delete(author._id)">Delete</button> -->
-          <button [routerLink]="['/edit/', author._id]">Edit</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="row text-right">
+  <div class="col-md-12">
+    <u>
+      <button [routerLink]="['new']" class="btn btn-outline-success">Add a quotable author</button>
+    </u>
+  </div>
 </div>
+<h5>We have quoted by: </h5>
+
+<table class="text-center table table-striped">
+  <thead>
+    <tr>
+      <th>Author</th>
+      <th>Actions available</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let author of authors">
+      <td>{{author.name}}</td>
+      <td>
+        <button [routerLink]="['/view/', author._id]" class="btn btn-primary">View Quotes</button>
+        <!-- <button (click)="delete(author._id)">Delete</button> -->
+        <button [routerLink]="['/edit/', author._id]" class="btn btn-warning">Edit</button>
+        <button (click)="delete(quote._id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

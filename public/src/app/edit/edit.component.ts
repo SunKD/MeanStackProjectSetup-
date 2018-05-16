@@ -12,7 +12,8 @@ export class EditComponent implements OnInit {
   id: any;
   editAuthor;
   thisAuthor;
-  message;
+  message = "";
+  errors = { name: "" };
   constructor(
     private _httpService: HttpService,
     private _route: ActivatedRoute,
@@ -22,13 +23,13 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this._route.params.subscribe((params: Params) => (this.id = params['id']));
     this.getEditAuthor(this.id);
-    this.editAuthor = {name: ""};
+    this.editAuthor = { name: "" };
   }
 
-  getEditAuthor(id){
+  getEditAuthor(id) {
     let editing = this._httpService.getAuthor(this.id);
-    editing.subscribe(data=>{
-      this.editAuthor = data;
+    editing.subscribe(data => {
+      this.editAuthor = data['data'];
       console.log(data);
     })
     // this._httpService.getAuthor(id).subscribe(data=>{
@@ -36,15 +37,22 @@ export class EditComponent implements OnInit {
     // })
   }
 
-  onSubmit(id){
+  onSubmit(id) {
     console.log(this.editAuthor)
     let update = this._httpService.updateAuthor(this.editAuthor, id);
-    update.subscribe(data=>{
+    update.subscribe(data => {
       console.log("submited form")
       console.log(data);
-      this.message = data;
+      this.message = data["message"];
+      if (data['message'] === "Success") {
+        this.message = this.editAuthor.name + "added updated!";
+        this._router.navigate(['/']);
+      } else {
+        if (data['error'].errors['name']) {
+          this.errors.name = data['error'].errors['name'];
+        }
+      }
     })
-    this._router.navigate(['/']);
   }
 
 

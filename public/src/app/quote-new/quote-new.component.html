@@ -1,5 +1,5 @@
-<h3>Add new Author: </h3>
-<!-- <div class="alert alert-danger" *ngIf="errors.length > 0">{{ errors }}</div> -->
+<!-- <h3>Add new Author: </h3> -->
+<!-- <div class="alert alert-danger" *ngIf="errors.length > 0">{{ errors }}</div>
 <a [routerLink]="['/']">Home</a>
 
 <div class="row">
@@ -22,4 +22,50 @@
 
   </div>
 
+</div> -->
+
+
+<div class="row text-right">
+  <div class="col-md-12">
+    <a [routerLink]="['/']" class="btn btn-outline-success">Home</a>
+  </div>
+</div>
+<div class="row text-center">
+  <div class="col-md-12">
+    <h3>Add new Quote: </h3>
+  </div>
+</div>
+
+<div class="row">
+  <span [hidden]="!errors.quote" class="text-danger">*{{errors.quote.message}}</span>
+</div>
+<div class="row form">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="box text-center">
+      <form (submit)="onQuoteSubmit()">
+        <div class="row">
+          <div class="col-md-12 text-left">
+            <label>Quote:</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <input type="text" required minlength="3" name="newQuote.quote" [(ngModel)]="newQuote.quote" #quote="ngModel" class="form-control">
+            <span [hidden]="!errors.quote || quote.valid" class="text-danger">*{{errors.quote.message}}</span>
+          </div>
+        </div>
+        <div class="col-md-12">{{ quote.errors | json }} {{ quote.valid | json }}</div>
+        <div class="row buttons">
+          <div class="col-md-6">
+            <button [routerLink]="['/']" class="btn btn-danger form-control">Cancel</button>
+          </div>
+          <div class="col-md-6">
+            <input type="submit" class="btn btn-success form-control" [disabled]="!quote.valid" value="submit">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
 </div>

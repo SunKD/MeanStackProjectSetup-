@@ -1,6 +1,6 @@
-<div class="row">
+<!-- <div class="row">
   <a [routerLink]="['/']">Home</a>
-  {{message}}
+  
 </div>
 <div *ngIf="editAuthor">
     <form (submit) = "onSubmit(editAuthor._id)">
@@ -9,7 +9,45 @@
         <button [routerLink]="['/']" class="btn btn-info" >Cancel</button>
         <input type="submit" class="btn btn-info" value="submit">
       </form>
+</div> -->
+
+
+<!-- {{message}} -->
+
+<div class="row text-right">
+  <div class="col-md-4">
+    <a [routerLink]="['/']" class="btn btn-outline-success">Home</a>
+  </div>
 </div>
+<div *ngIf="editAuthor">
+  <h3>Edit Author: </h3>
+  <div class="row form">
+    <div class="col-md-4">
+      <div class="box text-center">
+        <form (submit)="onSubmit(editAuthor._id)">
+          <div class="row">
+            <div class="col-md-12 text-left">
+              <label>Name:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <input type="text" required minlength="3" name="name" [(ngModel)]="editAuthor.name" #name="ngModel" 
+                class="form-control">
+              <span [hidden]="!errors.name || name.valid" class="text-danger">*{{errors.name.message}}</span>
+            </div>
+          </div>
 
-  
-
+          <div class="row buttons">
+            <div class="col-md-6">
+              <button [routerLink]="['/']" class="btn btn-danger form-control">Cancel</button>
+            </div>
+            <div class="col-md-6">
+              <input type="submit" class="btn btn-success form-control" value="submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

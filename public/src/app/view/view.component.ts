@@ -20,7 +20,7 @@ export class ViewComponent implements OnInit {
     this._route.params.subscribe((params: Params) => (this.id = params['id']));
     let author = this._httpService.getAuthor(this.id).subscribe(data => {
       console.log(data);
-      this.thisAuthor = data;
+      this.thisAuthor = data['data'];
       // this.thisVote = data.quote
       // this.thisVote = data.quotes.
     })

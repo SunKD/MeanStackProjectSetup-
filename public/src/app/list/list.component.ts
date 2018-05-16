@@ -8,7 +8,7 @@ import { HttpService } from '../http.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  authors;
+  authors: any;
   newAuthor: any;
   editAuthor;
   title = 'Favorite authors';
@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
     let authors = this._httpService.getAuthors().subscribe(data=>{
       console.log("get all author");
       console.log(data);
-      this.authors = data;
+      this.authors = data['data'];
     });
 
   }

@@ -17,7 +17,7 @@ module.exports = (app) => {
         c.create(req, res);
     })
 
-    app.post('/authors/:id', function(req, res){
+    app.post('/authors/:id', function (req, res) {
         c.createQuote(req, res);
     })
 
@@ -42,7 +42,7 @@ module.exports = (app) => {
         c.deleteQuote(req, res);
     })
 
-    app.all("*", (req,res,next) => {
+    app.all("*", (req, res, next) => {
         res.sendFile(path.resolve("./public/dist/public/index.html"))
     });
 

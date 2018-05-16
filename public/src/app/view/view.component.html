@@ -1,36 +1,34 @@
 <div *ngIf="thisAuthor">
   <div class="row">
-    <div class="col-md-4">
-      <a [routerLink]="['/']">Home</a>
+    <div class="col-md-8"></div>
+    <div class="col-md-2">
+      <button [routerLink]="['/']" class="btn btn-outline-success form-control">Home</button>
     </div>
-    <div class="col-md-4">
-      <a [routerLink]="['/newquote/', thisAuthor._id]">Add a quote</a>
+    <div class="col-md-2">
+      <a [routerLink]="['/newquote/', thisAuthor._id]" class="btn btn-outline-success form-control">Add a quote</a>
     </div>
     <div class="col-md-4"></div>
   </div>
 
-<p>Quotes by {{thisAuthor.name}} </p>
-<table>
-  <thead>
-    <tr>
-      <th>Quote</th>
-      <th>Votes</th>
-      <th>Actions avaliable</th>
-    </tr>
-  </thead>
-  <tbody>
-    <div *ngFor="let quote of thisAuthor.quotes">
+  <h3>Quotes by {{thisAuthor.name}} </h3>
+  <table class="table table-strpied text-center">
+    <thead>
       <tr>
-        <td>{{quote.quote}}</td>
-        <td>{{quote.vote}}</td>
-        <td>
-          <button (click)="voteUp(quote._id)">Vote Up</button>
-          <button (click)="voteDown(quote._id)">Vote Down</button>
-          <button (click)="delete(quote._id)">Delete</button>
-        </td>
+        <th>Quote</th>
+        <th>Votes</th>
+        <th>Actions avaliable</th>
       </tr>
-    </div>
-    
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quote of thisAuthor.quotes">
+          <td>{{quote.quote}}</td>
+          <td>{{quote.vote}}</td>
+          <td>
+            <button (click)="voteUp(quote._id)" class="btn btn-success">Vote Up</button>
+            <button (click)="voteDown(quote._id)" class="btn btn-warning">Vote Down</button>
+            <button (click)="delete(quote._id)" class="btn btn-danger">Delete</button>
+          </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
