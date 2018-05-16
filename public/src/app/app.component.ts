@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   authors;
   newAuthor: any;
   editAuthor;
-  title = 'Favorite authors';
+  title = 'Quote Ranks';
   constructor(private _httpService: HttpService) { 
     // this.thirdtask = {title: ""} //when you dont want to use the *ngif
   }

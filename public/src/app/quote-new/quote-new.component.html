@@ -5,12 +5,12 @@
 <div class="row">
   <div class="col-md-4">
     <div class="box text-center">
-      <form (submit)="onSubmit()">
+      <form (submit)="onQuoteSubmit()">
         <div class="row">
-          <label>Name:</label>
+          <label>Quote:</label>
         </div>
         <div class="row">
-          <input type="text" name="newauthor.name" [(ngModel)]="newauthor.name">
+          <input type="text" name="newQuote.quote" [(ngModel)]="newQuote.quote">
         </div>
         <div class="row">
           <button [routerLink]="['/']" class="btn btn-info">Cancel</button>

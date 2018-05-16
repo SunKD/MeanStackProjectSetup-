@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
 
+  
   constructor(private _http: HttpClient) { 
     this.getAuthors();
   }
@@ -18,6 +19,12 @@ export class HttpService {
     return this._http.get('/authors/' + id);
   }
 
+  voteQuote(id: String,  quote){
+    console.log(id)
+    console.log(quote)
+    return this._http.post('/quotes/'+ id, quote);
+  }
+
   addAuthor(newAuthor) {
     return this._http.post('/authors', newAuthor);
   }
@@ -28,6 +35,18 @@ export class HttpService {
 
   deleteAuthor(id: String) {
     return this._http.delete('/authors/' + id);
+  }
+
+  addNewQuote(id: String, newQuote){
+    console.log(id);
+    console.log(newQuote)
+    return this._http.post('/authors/' + id, newQuote);
+  }
+
+  deleteQuote(id: String, delquote:String) {
+    console.log(delquote, "this should be quote id")
+    console.log(id)
+    return this._http.delete('/quotes/' + id +"/"+ delquote);
   }
 
 }

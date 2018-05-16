@@ -11,6 +11,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class NewComponent implements OnInit {
   newauthor;
   message;
+  errors;
   constructor(
     private _httpService: HttpService,
     private _route: ActivatedRoute,
@@ -25,6 +26,12 @@ export class NewComponent implements OnInit {
       console.log(data);
       console.log("New Author added");
       this.message = data;
+      // if (data['message'] !== 'error') {
+      //   this._router.navigate(['/authors']);
+      // } else {
+      //   this.errors = data['errors']['errors']['name']['message'];
+      //   console.log(data['errors']['errors']['name']['message']);
+      // }
     })
     this._router.navigate(['/']);
   }

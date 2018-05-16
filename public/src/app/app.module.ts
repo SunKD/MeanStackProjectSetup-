@@ -10,6 +10,8 @@ import { NewComponent } from './new/new.component';
 import { EditComponent } from './edit/edit.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ListComponent } from './list/list.component';
+import { ViewComponent } from './view/view.component';
+import { QuoteNewComponent } from './quote-new/quote-new.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ListComponent } from './list/list.component';
     NewComponent,
     EditComponent,
     PagenotfoundComponent,
-    ListComponent
+    ListComponent,
+    ViewComponent,
+    QuoteNewComponent
   ],
   imports: [
     BrowserModule,
