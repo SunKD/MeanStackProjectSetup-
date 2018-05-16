@@ -31,7 +31,7 @@ export class ViewComponent implements OnInit {
       { "id": quoteId, "voteVal": 1 }).subscribe(data => {
         this.thisAuthor = data;
       });
-
+      this._router.navigate(['/view', this.thisAuthor._id]);
   }
 
   voteDown(quoteId) {
@@ -40,6 +40,7 @@ export class ViewComponent implements OnInit {
         console.log("got intot this function");
         this.thisAuthor = data;
       });
+      this._router.navigate(['/view', this.thisAuthor._id]);
   }
 
   delete(quoteId: String) {
@@ -48,7 +49,7 @@ export class ViewComponent implements OnInit {
       .subscribe(data => {
         this.thisAuthor = data;
       });
-
+      this._router.navigate(['/view', this.thisAuthor._id]);
   }
 
 }
