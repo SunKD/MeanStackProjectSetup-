@@ -8,7 +8,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
-  id;
+  id: String;
   thisAuthor;
   thisVote;
   constructor(
@@ -27,19 +27,14 @@ export class ViewComponent implements OnInit {
   voteUp(quoteId) {
     let voted = this._httpService.voteQuote(this.thisAuthor._id,
       { "id": quoteId, "voteVal": 1 }).subscribe(data => {
-        this.thisAuthor = data;
-        this.redirectToView();
-        this.getAuthor();
+        this.thisAuthor = data['data'];
       });
   }
 
   voteDown(quoteId) {
     let voted = this._httpService.voteQuote(this.thisAuthor._id,
       { "id": quoteId, "voteVal": -1 }).subscribe(data => {
-        console.log("got intot this function");
-        this.thisAuthor = data;
-        this.redirectToView();
-        this.getAuthor();
+        this.thisAuthor = data['data'];
       });
   }
 
@@ -47,21 +42,13 @@ export class ViewComponent implements OnInit {
     let deletequote = this._httpService.deleteQuote(this.thisAuthor._id,
       quoteId)
       .subscribe(data => {
-        this.thisAuthor = data;
-        this.redirectToView();
-        this.getAuthor();
+        this.thisAuthor = data['data'];
       });
   }
 
-  redirectToView() {
-    this._router.navigate(['/view/' + this.id]);
-  }
+  // redirectToView() {
+  //   this._router.navigate(['/view/' + this.id]);
+  // }
 
-  getAuthor() {
-    let author = this._httpService.getAuthor(this.id).subscribe(data => {
-      console.log(data);
-      this.thisAuthor = data['data'];
-    })
-  }
 }
 

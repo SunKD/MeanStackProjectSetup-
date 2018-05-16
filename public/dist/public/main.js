@@ -837,36 +837,19 @@ var ViewComponent = /** @class */ (function () {
     ViewComponent.prototype.voteUp = function (quoteId) {
         var _this = this;
         var voted = this._httpService.voteQuote(this.thisAuthor._id, { "id": quoteId, "voteVal": 1 }).subscribe(function (data) {
-            _this.thisAuthor = data;
-            _this.redirectToView();
-            _this.getAuthor();
+            _this.thisAuthor = data['data'];
         });
     };
     ViewComponent.prototype.voteDown = function (quoteId) {
         var _this = this;
         var voted = this._httpService.voteQuote(this.thisAuthor._id, { "id": quoteId, "voteVal": -1 }).subscribe(function (data) {
-            console.log("got intot this function");
-            _this.thisAuthor = data;
-            _this.redirectToView();
-            _this.getAuthor();
+            _this.thisAuthor = data['data'];
         });
     };
     ViewComponent.prototype.delete = function (quoteId) {
         var _this = this;
         var deletequote = this._httpService.deleteQuote(this.thisAuthor._id, quoteId)
             .subscribe(function (data) {
-            _this.thisAuthor = data;
-            _this.redirectToView();
-            _this.getAuthor();
-        });
-    };
-    ViewComponent.prototype.redirectToView = function () {
-        this._router.navigate(['/view/' + this.id]);
-    };
-    ViewComponent.prototype.getAuthor = function () {
-        var _this = this;
-        var author = this._httpService.getAuthor(this.id).subscribe(function (data) {
-            console.log(data);
             _this.thisAuthor = data['data'];
         });
     };
