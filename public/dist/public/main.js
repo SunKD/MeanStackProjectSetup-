@@ -440,7 +440,7 @@ module.exports = "h5{\r\n    margin-top: 30px;\r\n    color: purple;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row text-right\">\n  <div class=\"col-md-12\">\n    <u>\n      <button [routerLink]=\"['new']\" class=\"btn btn-outline-success\">Add a quotable author</button>\n    </u>\n  </div>\n</div>\n<h5>We have quoted by: </h5>\n\n<table class=\"text-center table table-striped\">\n  <thead>\n    <tr>\n      <th>Author</th>\n      <th>Actions available</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let author of authors\">\n      <td>{{author.name}}</td>\n      <td>\n        <button [routerLink]=\"['/view/', author._id]\" class=\"btn btn-primary\">View Quotes</button>\n        <!-- <button (click)=\"delete(author._id)\">Delete</button> -->\n        <button [routerLink]=\"['/edit/', author._id]\" class=\"btn btn-warning\">Edit</button>\n        <button (click)=\"delete(author._id)\" class=\"btn btn-danger\">Delete</button>\n      </td>\n    </tr>\n  </tbody>\n</table>"
+module.exports = "<div class=\"row text-right\">\n  <div class=\"col-md-12\">\n    <u>\n      <button [routerLink]=\"['/new']\" class=\"btn btn-outline-success\">Add a quotable author</button>\n    </u>\n  </div>\n</div>\n<h5>We have quoted by: </h5>\n\n<table class=\"text-center table table-striped\">\n  <thead>\n    <tr>\n      <th>Author</th>\n      <th>Actions available</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let author of authors\">\n      <td>{{author.name}}</td>\n      <td>\n        <button [routerLink]=\"['/view/', author._id]\" class=\"btn btn-primary\">View Quotes</button>\n        <!-- <button (click)=\"delete(author._id)\">Delete</button> -->\n        <button [routerLink]=\"['/edit/', author._id]\" class=\"btn btn-warning\">Edit</button>\n        <button (click)=\"delete(author._id)\" class=\"btn btn-danger\">Delete</button>\n      </td>\n    </tr>\n  </tbody>\n</table>"
 
 /***/ }),
 
@@ -832,14 +832,14 @@ var ViewComponent = /** @class */ (function () {
         var author = this._httpService.getAuthor(this.id).subscribe(function (data) {
             console.log(data);
             _this.thisAuthor = data['data'];
-            // this.thisVote = data.quote
-            // this.thisVote = data.quotes.
         });
     };
     ViewComponent.prototype.voteUp = function (quoteId) {
         var _this = this;
         var voted = this._httpService.voteQuote(this.thisAuthor._id, { "id": quoteId, "voteVal": 1 }).subscribe(function (data) {
             _this.thisAuthor = data;
+            _this.redirectToView();
+            _this.getAuthor();
         });
     };
     ViewComponent.prototype.voteDown = function (quoteId) {
@@ -847,6 +847,8 @@ var ViewComponent = /** @class */ (function () {
         var voted = this._httpService.voteQuote(this.thisAuthor._id, { "id": quoteId, "voteVal": -1 }).subscribe(function (data) {
             console.log("got intot this function");
             _this.thisAuthor = data;
+            _this.redirectToView();
+            _this.getAuthor();
         });
     };
     ViewComponent.prototype.delete = function (quoteId) {
@@ -854,6 +856,18 @@ var ViewComponent = /** @class */ (function () {
         var deletequote = this._httpService.deleteQuote(this.thisAuthor._id, quoteId)
             .subscribe(function (data) {
             _this.thisAuthor = data;
+            _this.redirectToView();
+            _this.getAuthor();
+        });
+    };
+    ViewComponent.prototype.redirectToView = function () {
+        this._router.navigate(['/view/' + this.id]);
+    };
+    ViewComponent.prototype.getAuthor = function () {
+        var _this = this;
+        var author = this._httpService.getAuthor(this.id).subscribe(function (data) {
+            console.log(data);
+            _this.thisAuthor = data['data'];
         });
     };
     ViewComponent = __decorate([

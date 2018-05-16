@@ -21,8 +21,6 @@ export class ViewComponent implements OnInit {
     let author = this._httpService.getAuthor(this.id).subscribe(data => {
       console.log(data);
       this.thisAuthor = data['data'];
-      // this.thisVote = data.quote
-      // this.thisVote = data.quotes.
     })
   }
 
@@ -30,8 +28,9 @@ export class ViewComponent implements OnInit {
     let voted = this._httpService.voteQuote(this.thisAuthor._id,
       { "id": quoteId, "voteVal": 1 }).subscribe(data => {
         this.thisAuthor = data;
+        this.redirectToView();
+        this.getAuthor();
       });
-      this._router.navigate(['/view' + this.thisAuthor._id]);
   }
 
   voteDown(quoteId) {
@@ -39,8 +38,9 @@ export class ViewComponent implements OnInit {
       { "id": quoteId, "voteVal": -1 }).subscribe(data => {
         console.log("got intot this function");
         this.thisAuthor = data;
+        this.redirectToView();
+        this.getAuthor();
       });
-      this._router.navigate(['/view'+ this.thisAuthor._id]);
   }
 
   delete(quoteId: String) {
@@ -48,8 +48,20 @@ export class ViewComponent implements OnInit {
       quoteId)
       .subscribe(data => {
         this.thisAuthor = data;
+        this.redirectToView();
+        this.getAuthor();
       });
-      this._router.navigate(['/view'+ this.thisAuthor._id]);
   }
 
+  redirectToView() {
+    this._router.navigate(['/view/' + this.id]);
+  }
+
+  getAuthor() {
+    let author = this._httpService.getAuthor(this.id).subscribe(data => {
+      console.log(data);
+      this.thisAuthor = data['data'];
+    })
+  }
 }
+
